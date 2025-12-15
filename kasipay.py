@@ -243,7 +243,47 @@ if selected_view == "Overview":
             f"{sat_change:.0f}%"
         )
         st.markdown('</div>', unsafe_allow_html=True)
+    # Quick charts
+    st.markdown("---")
+    st.subheader("📊 Performance at a Glance")
     
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        # Market share pie chart
+        fig = px.pie(
+            values=[market_share, 100-market_share],
+            names=['KasiPay Users', 'Non-Users'],
+            title=f'Market Share: {market_share:.1f}%',
+            color_discrete_sequence=['#667eea', '#e2e8f0']
+        )
+        fig.update_traces(textposition='inside', textinfo='percent+label')
+        st.plotly_chart(fig, use_container_width=True)
+    
+    with col2:
+        # Sentiment distribution
+        sentiment_counts = pd.cut(
+            review_df['Sentiment_Score'],
+            bins=[-1, -0.5, 0, 0.5, 1],
+            labels=['Very Negative', 'Negative', 'Positive', 'Very Positive']
+        ).value_counts()
+        
+        fig = px.bar(
+            x=sentiment_counts.index,
+            y=sentiment_counts.values,
+            title='Customer Sentiment Distribution',
+            color=sentiment_counts.values,
+            color_continuous_scale='RdYlGn'
+        )
+        fig.update_layout(xaxis_title='Sentiment', yaxis_title='Count')
+        st.plotly_chart(fig, use_container_width=True)
+
+elif selected_view == "Market Analysis":
+    st.header("📍 Market Analysis")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
     
     
         # Payment methods breakdown
