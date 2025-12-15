@@ -278,13 +278,7 @@ if selected_view == "Overview":
         fig.update_layout(xaxis_title='Sentiment', yaxis_title='Count')
         st.plotly_chart(fig, use_container_width=True)
 
-elif selected_view == "Market Analysis":
-    st.header("📍 Market Analysis")
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-    # Key Insights
+ # Key Insights
      st.markdown("---")
     st.subheader("🎯 Key Insights & Recommendations")
     
@@ -320,6 +314,14 @@ elif selected_view == "Market Analysis":
         3. Estimated implementation: Q3 2024
         """)
     
+
+elif selected_view == "Market Analysis":
+    st.header("📍 Market Analysis")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+   
     
         # Payment methods breakdown
         payment_counts = {}
