@@ -244,43 +244,8 @@ if selected_view == "Overview":
         )
         st.markdown('</div>', unsafe_allow_html=True)
     
-    # Key Insights
-    st.markdown("---")
-    st.subheader(" Key Insights & Recommendations")
     
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.info("""
-        **Top Issue Found: Verification Process**
-        - 71% drop-off during ID verification (now 41%)
-        - Top negative keyword: "verification"
-        - Most frequent support ticket topic
-        """)
-        
-        st.success("""
-        **Immediate Action Taken:**
-        1. Simplified ID upload process
-        2. Added real-time validation
-        3. Reduced verification time from 2 days to 2 hours
-        """)
-    
-    with col2:
-        st.warning("""
-        **Top Feature Request: M-Pesa Integration**
-        - Requested in 42% of all reviews
-        - Critical for user retention
-        - Key to expanding market reach
-        """)
-        
-        st.info("""
-        **Strategic Response:**
-        1. Created partnership guide for M-Pesa
-        2. Initiated technical feasibility study
-        3. Estimated implementation: Q3 2024
-        """)
-    
-    # Quick charts
+     # Quick charts
     st.markdown("---")
     st.subheader(" Performance at a Glance")
     
@@ -321,6 +286,44 @@ elif selected_view == "Market Analysis":
     col1, col2 = st.columns(2)
     
     with col1:
+    
+    # Key Insights
+    st.markdown("---")
+    st.subheader(" Key Insights & Recommendations")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.info("""
+        **Top Issue Found: Verification Process**
+        - 71% drop-off during ID verification (now 41%)
+        - Top negative keyword: "verification"
+        - Most frequent support ticket topic
+        """)
+        
+        st.success("""
+        **Immediate Action Taken:**
+        1. Simplified ID upload process
+        2. Added real-time validation
+        3. Reduced verification time from 2 days to 2 hours
+        """)
+    
+    with col2:
+        st.warning("""
+        **Top Feature Request: M-Pesa Integration**
+        - Requested in 42% of all reviews
+        - Critical for user retention
+        - Key to expanding market reach
+        """)
+        
+        st.info("""
+        **Strategic Response:**
+        1. Created partnership guide for M-Pesa
+        2. Initiated technical feasibility study
+        3. Estimated implementation: Q3 2024
+        """)
+    
+   
         # Payment methods breakdown
         payment_counts = {}
         for method in ['KasiPay', 'SnapScan', 'Zapper', 'EFT']:
