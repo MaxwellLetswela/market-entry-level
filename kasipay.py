@@ -279,7 +279,7 @@ if selected_view == "Overview":
         st.plotly_chart(fig, use_container_width=True)
 
  # Key Insights
-     st.markdown("---")
+    st.markdown("---")
     st.subheader("🎯 Key Insights & Recommendations")
     
     col1, col2 = st.columns(2)
