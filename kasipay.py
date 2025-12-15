@@ -11,7 +11,7 @@ warnings.filterwarnings('ignore')
 # Page configuration
 st.set_page_config(
     page_title="KasiPay Analytics Dashboard",
-    page_icon="📈",
+    page_icon="💰",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -49,7 +49,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Title
-st.markdown('<h1 class="main-header"> KasiPay Performance Dashboard</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="main-header">💰 KasiPay Performance Dashboard</h1>', unsafe_allow_html=True)
 st.markdown('<p class="sub-header">Small-Level Analysis for Hyper-Local FinTech Growth</p>', unsafe_allow_html=True)
 
 # Generate synthetic data
@@ -191,8 +191,8 @@ with st.sidebar:
     
     st.markdown("---")
     st.markdown("### Key Dates")
-    st.info(" **Onboarding Improved:** March 25, 2024")
-    st.warning(" **Target Market:** Township Informal Traders")
+    st.info("📅 **Onboarding Improved:** March 25, 2024")
+    st.warning("🎯 **Target Market:** Township Informal Traders")
     
     st.markdown("---")
     st.markdown("### Data Summary")
@@ -244,52 +244,9 @@ if selected_view == "Overview":
         )
         st.markdown('</div>', unsafe_allow_html=True)
     
-    
-     # Quick charts
-    st.markdown("---")
-    st.subheader(" Performance at a Glance")
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        # Market share pie chart
-        fig = px.pie(
-            values=[market_share, 100-market_share],
-            names=['KasiPay Users', 'Non-Users'],
-            title=f'Market Share: {market_share:.1f}%',
-            color_discrete_sequence=['#667eea', '#e2e8f0']
-        )
-        fig.update_traces(textposition='inside', textinfo='percent+label')
-        st.plotly_chart(fig, use_container_width=True)
-    
-    with col2:
-        # Sentiment distribution
-        sentiment_counts = pd.cut(
-            review_df['Sentiment_Score'],
-            bins=[-1, -0.5, 0, 0.5, 1],
-            labels=['Very Negative', 'Negative', 'Positive', 'Very Positive']
-        ).value_counts()
-        
-        fig = px.bar(
-            x=sentiment_counts.index,
-            y=sentiment_counts.values,
-            title='Customer Sentiment Distribution',
-            color=sentiment_counts.values,
-            color_continuous_scale='RdYlGn'
-        )
-        fig.update_layout(xaxis_title='Sentiment', yaxis_title='Count')
-        st.plotly_chart(fig, use_container_width=True)
-
-elif selected_view == "Market Analysis":
-    st.header(" Market Analysis")
-    
-    col1, col2 = st.columns(2)
-    
-with col1:
-    
     # Key Insights
     st.markdown("---")
-    st.subheader(" Key Insights & Recommendations")
+    st.subheader("🎯 Key Insights & Recommendations")
     
     col1, col2 = st.columns(2)
     
@@ -323,7 +280,47 @@ with col1:
         3. Estimated implementation: Q3 2024
         """)
     
-   
+    # Quick charts
+    st.markdown("---")
+    st.subheader("📊 Performance at a Glance")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        # Market share pie chart
+        fig = px.pie(
+            values=[market_share, 100-market_share],
+            names=['KasiPay Users', 'Non-Users'],
+            title=f'Market Share: {market_share:.1f}%',
+            color_discrete_sequence=['#667eea', '#e2e8f0']
+        )
+        fig.update_traces(textposition='inside', textinfo='percent+label')
+        st.plotly_chart(fig, use_container_width=True)
+    
+    with col2:
+        # Sentiment distribution
+        sentiment_counts = pd.cut(
+            review_df['Sentiment_Score'],
+            bins=[-1, -0.5, 0, 0.5, 1],
+            labels=['Very Negative', 'Negative', 'Positive', 'Very Positive']
+        ).value_counts()
+        
+        fig = px.bar(
+            x=sentiment_counts.index,
+            y=sentiment_counts.values,
+            title='Customer Sentiment Distribution',
+            color=sentiment_counts.values,
+            color_continuous_scale='RdYlGn'
+        )
+        fig.update_layout(xaxis_title='Sentiment', yaxis_title='Count')
+        st.plotly_chart(fig, use_container_width=True)
+
+elif selected_view == "Market Analysis":
+    st.header("📍 Market Analysis")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
         # Payment methods breakdown
         payment_counts = {}
         for method in ['KasiPay', 'SnapScan', 'Zapper', 'EFT']:
@@ -361,7 +358,7 @@ with col1:
         st.plotly_chart(fig, use_container_width=True)
     
     # Stalls by transaction volume
-    st.subheader(" Stalls by Daily Transaction Volume")
+    st.subheader("📈 Stalls by Daily Transaction Volume")
     
     fig = px.histogram(
         market_df,
@@ -376,7 +373,7 @@ with col1:
         showlegend=False
     )
     
-   # Add KasiPay users highlight
+    # Add KasiPay users highlight
     kasipay_users = market_df[market_df['Uses_KasiPay']]
     if not kasipay_users.empty:
         fig.add_trace(go.Histogram(
@@ -395,8 +392,6 @@ elif selected_view == "Onboarding Funnel":
     col1, col2 = st.columns([2, 1])
     
     with col1:
-    
-with col1:
         # Funnel chart
         fig = go.Figure(go.Funnel(
             y=funnel_df['Funnel_Stage'],
@@ -429,7 +424,7 @@ with col1:
                 st.progress(min(conversion/100, 1.0))
     
     # Drop-off reasons
-    st.subheader(" Drop-off Analysis")
+    st.subheader("📉 Drop-off Analysis")
     
     dropoff_data = funnel_df[funnel_df['Drop-off_Count'] > 0].copy()
     dropoff_data['Stage'] = dropoff_data['Funnel_Stage']
@@ -447,7 +442,7 @@ with col1:
     st.plotly_chart(fig, use_container_width=True)
 
 elif selected_view == "Customer Feedback":
-    st.header(" Customer Feedback Analysis")
+    st.header("🗣️ Customer Feedback Analysis")
     
     col1, col2 = st.columns(2)
     
@@ -480,7 +475,7 @@ elif selected_view == "Customer Feedback":
         st.plotly_chart(fig, use_container_width=True)
     
     # Sentiment over time
-    st.subheader(" Sentiment Trend Over Time")
+    st.subheader("📈 Sentiment Trend Over Time")
     
     review_df['Week'] = review_df['Date'].dt.isocalendar().week
     weekly_sentiment = review_df.groupby('Week')['Sentiment_Score'].mean().reset_index()
@@ -511,7 +506,7 @@ elif selected_view == "Customer Feedback":
     st.plotly_chart(fig, use_container_width=True)
     
     # Recent reviews
-    st.subheader(" Recent Customer Reviews")
+    st.subheader("📝 Recent Customer Reviews")
     
     recent_reviews = review_df.sort_values('Date', ascending=False).head(10)
     
@@ -523,7 +518,7 @@ elif selected_view == "Customer Feedback":
             st.caption(f"Sentiment: {review['Sentiment_Score']:.2f}")
 
 else:  # Impact Analysis
-    st.header(" Impact Analysis: Before vs After Onboarding Improvements")
+    st.header("📊 Impact Analysis: Before vs After Onboarding Improvements")
     
     # Weekly metrics comparison
     col1, col2 = st.columns(2)
@@ -583,7 +578,7 @@ else:  # Impact Analysis
         st.plotly_chart(fig, use_container_width=True)
     
     # Before/After comparison
-    st.subheader(" Key Metric Improvements")
+    st.subheader("📈 Key Metric Improvements")
     
     metrics_comparison = pd.DataFrame({
         'Metric': ['Weekly New Users', 'Onboarding Drop-off', 'Customer Satisfaction', 'Support Tickets'],
@@ -622,7 +617,7 @@ else:  # Impact Analysis
     st.plotly_chart(fig, use_container_width=True)
     
     # Support tickets trend
-    st.subheader(" Support Ticket Reduction")
+    st.subheader("🛠️ Support Ticket Reduction")
     
     fig = go.Figure()
     
@@ -652,6 +647,6 @@ else:  # Impact Analysis
 st.markdown("---")
 st.markdown("""
     <div style='text-align: center; color: #6B7280; padding: 1rem;'>
-        <small>KasiPay Analytics Dashboard • Last Updated: August 2025 • Data Sources: App Analytics, Customer Surveys, Manual Observation</small>
+        <small>KasiPay Analytics Dashboard • Last Updated: August 2024 • Data Sources: App Analytics, Customer Surveys, Manual Observation</small>
     </div>
 """, unsafe_allow_html=True)
