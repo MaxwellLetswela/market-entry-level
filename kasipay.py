@@ -651,6 +651,6 @@ st.markdown("""
     <div style='text-align: center; color: #6B7280; padding: 1rem;'>
         <small>KasiPay Analytics Dashboard • Last Updated: August 2025 • Data Sources: App Analytics, Customer Surveys, Manual Observation</small>
          <p><strong>Disclaimer:</strong> This is a conceptual project composed with real and synthetic data for demonstration purpose only. Names of companies are fictitious and do not represent or alias any legally registered entity within the republic or abroad. If my work impress you, reach-out for my services, I'm available for consulting and employment.</p>
-        <small>Econometric Dashboard • Prepared for market makers and VCs</small>
+        <small>Market Entry Dashboard • Prepared for small market entrants</small>
     </div>
 """, unsafe_allow_html=True)
